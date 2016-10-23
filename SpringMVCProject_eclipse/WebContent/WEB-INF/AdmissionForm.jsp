@@ -8,7 +8,7 @@
 	</p>
 	
 	<p>
-		Password: <input type="password" name="password" />
+		Password: <input type="password" name="userPassword" />
 	</p>
 		
 		<input type="submit" value="Click here to submit!" />
