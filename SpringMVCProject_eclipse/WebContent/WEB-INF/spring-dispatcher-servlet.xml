@@ -14,7 +14,7 @@
 	
 	<mvc:annotation-driven />
 	
-		<mvc:resources mapping="/resources/**" location="/WEB-INF/" />
+		<mvc:resources mapping="/resources/**" location="/style/" />
 	
 	<!-- 
 	<mvc:interceptors>
@@ -32,15 +32,15 @@
 
 	
 	<bean id="themeSource" class="org.springframework.ui.context.support.ResourceBundleThemeSource">
-		<property name="basenamePrefix" value="theme-" />
+    	<property name="basenamePrefix" value="theme-" />
 	</bean>
-	
+
 	<bean id="themeChangeInterceptor" class="org.springframework.web.servlet.theme.ThemeChangeInterceptor">
-		<property name="paramName" value="theme"/>
+	    <property name="paramName" value="theme" />
 	</bean>
 	
 	<bean id="themeResolver" class="org.springframework.web.servlet.theme.CookieThemeResolver">
-		<property name="defaultThemeName" value="default" />
+	    <property name="defaultThemeName" value="default" />
 	</bean>
 	
 	<bean id="urlHandler" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
