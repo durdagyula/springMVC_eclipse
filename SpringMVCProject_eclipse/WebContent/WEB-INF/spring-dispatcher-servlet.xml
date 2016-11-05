@@ -11,16 +11,44 @@
    		 http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
         
 	<context:component-scan base-package="com.controllers" />
+	
 	<mvc:annotation-driven />
 	
+		<mvc:resources mapping="/resources/**" location="/WEB-INF/" />
+	
+	<!-- 
+	<mvc:interceptors>
+        <bean class="org.springframework.web.servlet.theme.ThemeChangeInterceptor">
+        	<property name="paramName" value="siteTheme"></property>
+        </bean>
+    </mvc:interceptors>
+	-->
+ 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
-		<property name="prefix">
-			<value>/WEB-INF/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+	
+	<bean id="themeSource" class="org.springframework.ui.context.support.ResourceBundleThemeSource">
+		<property name="basenamePrefix" value="theme-" />
+	</bean>
+	
+	<bean id="themeChangeInterceptor" class="org.springframework.web.servlet.theme.ThemeChangeInterceptor">
+		<property name="paramName" value="theme"/>
+	</bean>
+	
+	<bean id="themeResolver" class="org.springframework.web.servlet.theme.CookieThemeResolver">
+		<property name="defaultThemeName" value="default" />
+	</bean>
+	
+	<bean id="urlHandler" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+    	<property name="interceptors">
+       	 <list>
+            <ref bean="themeChangeInterceptor" />
+      	  </list>
+    	</property>
 	</bean>
 	
 </beans>
