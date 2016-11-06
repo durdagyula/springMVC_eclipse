@@ -1,4 +1,8 @@
-
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ page session="false"%>
 <html>
 <body>
 	
@@ -10,15 +14,19 @@
 
 	<table>
 		<tr>
-			<td>User Name:</td>
+			<td><spring:message code="label.userName" />:</td>
 			<td>${user1.userName}</td>
 		</tr>
 		
 		<tr>
-			<td>Password:</td>
+			<td><spring:message code="label.password" />:</td>
 			<td>${user1.userPassword}</td>
-		</tr>
+		</tr>	
 		
+		<tr>
+			<td><spring:message code="label.school" />:</td>
+			<td>${user1.school}</td>
+		</tr>
 	</table>
 
 

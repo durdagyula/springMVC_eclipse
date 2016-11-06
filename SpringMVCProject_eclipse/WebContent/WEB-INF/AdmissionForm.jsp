@@ -9,12 +9,12 @@
 </head>
 <body>
 	<select onchange="location = this.value">
-		   <option>Themes</option>
-           <option value="/SpringMVCProject_eclipse/admissionForm.html?theme=default">Default</option>
-           <option value="/SpringMVCProject_eclipse/admissionForm.html?theme=blue">Blue</option>
-           <option value="/SpringMVCProject_eclipse/admissionForm.html?theme=black">Black</option>
+		   <option><spring:message code="label.theme" /></option>
+           <option value="/SpringMVCProject_eclipse/admissionForm.html?theme=default"><spring:message code="label.default" /></option>
+           <option value="/SpringMVCProject_eclipse/admissionForm.html?theme=blue"><spring:message code="label.blue" /></option>
+           <option value="/SpringMVCProject_eclipse/admissionForm.html?theme=black"><spring:message code="label.black" /></option>
     </select>
-    Language: <a href="?locale=en">English</a>|<a href="?locale=hu">Magyar</a>
+    <spring:message code="label.language" />: <a href="?locale=en"><spring:message code="label.english" /></a>|<a href="?locale=hu"><spring:message code="label.hungarian" /></a>
 	
 	<!--	
 	<p>
@@ -27,19 +27,28 @@
 	</h1>
 
 	<form action="/SpringMVCProject_eclipse/submitAdmissionForm.html" method="post">
-	<p>
-		User Name: <input type="text" name="userName" />
-	</p>
+		<table>
+			<tr>
+				<td><spring:message code="label.userName" />:</td>
+				<td><input type="text" name="userName" /></td>
+			</tr>
+			
+			<tr>
+				<td><spring:message code="label.password" />:</td>
+				<td><input type="password" name="userPassword" /></td>
+			</tr>
+			
+			<tr>
+				<td><spring:message code="label.school" />:</td>
+				<td><input type="text" name="school" /></td>
+			</tr>
+		</table>
+		
+		<input type="submit" value="<spring:message code="label.submit" />" />
 	
-	<p>
-		Password: <input type="password" name="userPassword" />
-	</p>
-		
-		<input type="submit" value="Click here to submit!" />
-		
 	</form>
 	
-	Current Locale : ${pageContext.response.locale}
+	Test <<< Current Locale : ${pageContext.response.locale} >>>
 
 </body>
 </html>
