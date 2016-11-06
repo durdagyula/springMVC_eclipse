@@ -20,7 +20,18 @@
         <bean class="org.springframework.web.servlet.theme.ThemeChangeInterceptor">
         	<property name="paramName" value="theme"></property>
         </bean>
+        <bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="locale" />
+		</bean>
     </mvc:interceptors>
+    
+    <!-- Register the form.properties -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:messages" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
  
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
@@ -32,13 +43,24 @@
 	<bean id="themeSource" class="org.springframework.ui.context.support.ResourceBundleThemeSource">
     	<property name="basenamePrefix" value="theme-" />
 	</bean>
-
+	
+	<!-- Theme change -->
 	<bean id="themeChangeInterceptor" class="org.springframework.web.servlet.theme.ThemeChangeInterceptor">
 	    <property name="paramName" value="theme" />
 	</bean>
-	
 	<bean id="themeResolver" class="org.springframework.web.servlet.theme.CookieThemeResolver">
 	    <property name="defaultThemeName" value="default" />
+	</bean>
+	
+	<!-- Language change -->
+	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="language" />
+	</bean>
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="en" />
+		<property name="cookieName" value="myAppLocaleCookie"></property>
+		<property name="cookieMaxAge" value="3600"></property>
 	</bean>
 	
 	<bean id="urlHandler" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
@@ -47,6 +69,13 @@
             <ref bean="themeChangeInterceptor" />
       	  </list>
     	</property>
+	</bean>
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" >
+		<property name="interceptors">
+		   <list>
+			<ref bean="localeChangeInterceptor" />
+		   </list>
+		</property>
 	</bean>
 	
 </beans>
