@@ -6,6 +6,7 @@
 </head>
 <body>
 	<select onchange="location = this.value">
+		   <option>Themes</option>
            <option value="/SpringMVCProject_eclipse/admissionForm.html?theme=default">Default</option>
            <option value="/SpringMVCProject_eclipse/admissionForm.html?theme=blue">Blue</option>
            <option value="/SpringMVCProject_eclipse/admissionForm.html?theme=black">Black</option>
